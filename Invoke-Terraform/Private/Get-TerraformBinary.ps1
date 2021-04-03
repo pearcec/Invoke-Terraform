@@ -29,21 +29,18 @@ Function Get-TerraformBinary {
     try { 
         Invoke-WebRequest -Uri $shaUrl -OutFile $shaPath
     } catch {
-        Write-Error "Unable to request $($shaUrl)"
-        throw $_
+        throw "Unable to request $($shaUrl)"
     }
 
     try {
         Invoke-WebRequest -Uri $shaSigUrl -OutFile $shaSigPath
     } catch {
-        Write-Error "Unable to request $($shaSigUrl)"
-        throw $_  
+        throw "Unable to request $($shaSigUrl)"
     }
     $ProgressPreference = 'Continue' 
 
     if ( -not (Test-TerraformArchiveChecksum -SkipChecksum:$SkipChecksum -ArchiveName $archiveName -ZipPath $zipPath -SHAPath $shaPath -SHASigPath $shaSigPath) ) {
-        Write-Error 'Terraform Archive failed Checksum test.'
-        throw $_
+        throw 'Terraform Archive failed Checksum test.'
     }
     return $zipPath
 }

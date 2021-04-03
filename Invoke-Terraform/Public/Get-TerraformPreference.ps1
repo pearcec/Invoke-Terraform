@@ -12,6 +12,7 @@ Function Get-TerraformPreference {
         Write-Verbose 'Loading preferences'
         $script:preferenceCache = Get-Content -Path $HOME\.terraform\Invoke-Terraform.json | ConvertFrom-Json
     }
+    # TODO: Fill in defaults
 
     return $script:preferenceCache
 }

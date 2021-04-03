@@ -11,6 +11,5 @@ function Get-TerraformPlatform {
     if ($IsMacOS) {
         return 'darwin'
     }
-    Write-Error 'Unknown platform.'
-    throw $_
+    throw 'Unknown platform.'
 }

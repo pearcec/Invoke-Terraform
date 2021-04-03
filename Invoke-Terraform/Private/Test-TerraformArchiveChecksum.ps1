@@ -19,20 +19,17 @@ function Test-TerraformArchiveChecksum {
 
     & gpg --keyserver (Get-TerraformPreference).PGPKeyServer --recv (Get-TerraformPreference).HashiCorpPGPKeyId
     if ($LASTEXITCODE -ne 0) {
-        Write-Error 'Unable to retrieve HashiCorp key'
-        throw $_
+        throw 'Unable to retrieve HashiCorp key'
     }
     & gpg --verify $SHASigPath $SHAPath
     if ($LASTEXITCODE -ne 0) {
-        Write-Error "Unable to verify signature on $($SHAPath)"
-        throw $_
+        throw "Unable to verify signature on $($SHAPath)"
     }
 
     $SHASum = (Get-FileHash $ZipPath).Hash
     $HashiCorpSHASum = (Get-Content $shaPath | Select-String $ArchiveName).ToString().Split()[0]
     if ($SHASum -ne $HashiCorpSHASum ) {
-        Write-Error "Unable to verify SHASUM with $($SHAPath)"
-        throw $_
+        throw "Unable to verify SHASUM with $($SHAPath)"
     }
 
     Write-Verbose "Terraform archive $($zipPath) passed checksum test"

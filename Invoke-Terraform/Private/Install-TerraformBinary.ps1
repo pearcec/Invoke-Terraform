@@ -15,13 +15,11 @@ Function Install-TerraformBinary {
     }
 
     if (-not (Test-TerraformPath -TFVersion $TFVersion)) {
-        Write-Error "Failed to install Terraform $($TFversion)."
-        throw $_
+        throw "Failed to install Terraform $($TFversion)."
     }
 
     if ( -not (Test-TerraformCodeSignature -TFVersion $TFVersion)) {
-        Write-Error "Terraform $($TFversion) fail to pass Code Signature test. Uninstalling."
         Uninstall-Terraform -TFVersion $TFVersion
-        throw $_
+        throw "Terraform $($TFversion) fail to pass Code Signature test. Uninstalling."
     }
 }

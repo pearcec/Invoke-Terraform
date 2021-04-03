@@ -9,8 +9,7 @@ Function Set-TerraformPreference {
     # Get existing values
     if (-not (Test-Path $HOME\.terraform\ -PathType Container)) {
         if (-not (New-Item -Path $HOME -Name '.terraform' -ItemType 'directory')) {
-            Write-Error "Failed to create $($HOME)\.terraform preference directory"
-            throw $_
+            throw "Failed to create $($HOME)\.terraform preference directory"
         }
     }
     if ($Clear -and (Test-Path $HOME\.terraform\Invoke-Terraform.json)) {

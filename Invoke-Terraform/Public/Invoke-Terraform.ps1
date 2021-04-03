@@ -27,18 +27,20 @@ Function Invoke-Terraform {
             try {
                 Install-Terraform -TFVersion $TFVersion
             } catch {
-                Write-Error "Failed to auto download terraform version ($TFVersion)"
-                throw $_
+                throw "Failed to auto download terraform version ($TFVersion)"
             }
+        } else {
+            # TODO Let user know AutoDownload is an option or run Install-Terraform -TFVersion $TFVersion
+            throw "Terraform version ($TFVersion) not installed."
+
         }
     }
 
     if (-not (Test-TerraformCodeSignature -TFVersion $TFVersion)) {
-        Write-Error 'Unable to confirm Code Signature of terraform binary'
-        throw $_
+        throw 'Unable to confirm Code Signature of terraform binary'
     }
 
     & (Get-TerraformPath -TFVersion $TFVersion) $args
-
 }
+
 Set-Alias -Name terraform -Value Invoke-Terraform

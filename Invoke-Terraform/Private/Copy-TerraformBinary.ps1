@@ -8,8 +8,7 @@ Function Copy-TerraformBinary {
 
     if (-not (Test-Path $installPath -PathType Container)) {
         if (-not (New-Item -Path $installPath -ItemType 'directory')) {
-            Write-Error "Failed to create $($installPath) preference directory"
-            throw $_
+            throw "Failed to create $($installPath) preference directory"
         }
     }
 

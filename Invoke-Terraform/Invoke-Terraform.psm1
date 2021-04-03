@@ -1,7 +1,7 @@
 # Use [version] and [string]prerelease? or Use [string]
 
 $tfPreferences = [PSCustomObject]@{
-    Path                       = "$($HOME)\bin" # c:\terraform? AppData?
+    Path                       = Join-Path $HOME "bin" # c:\terraform? AppData?
     TFVersion                  = '0.14.7'
     ReleaseUrl                 = 'https://releases.hashicorp.com/terraform'
     AutoDownload               = $false
