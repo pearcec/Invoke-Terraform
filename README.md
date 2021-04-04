@@ -73,4 +73,5 @@ SkipCodeSignature          | Turn off code signature verification. Defaults to f
 
 By default *Invoke-Terraform* searches the current working directory for the file `.terraform-version`.  This file contains the preferred version of terraform. Store this file with your terraform project to seamlessly invoke the required version of terraform.
 
-[license]: https://img.shields.io/github/license/pearcec/invoke-terraform.svg
+[license-badge]: https://img.shields.io/github/license/pearcec/invoke-terraform.svg
+[license]:       https://raw.githubusercontent.com/pearcec/Invoke-Terraform/main/LICENSE
