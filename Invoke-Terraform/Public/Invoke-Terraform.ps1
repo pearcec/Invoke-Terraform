@@ -32,11 +32,24 @@ Function Invoke-Terraform {
         [string]$TFVersion,
         [switch]$SkipCodeSignature = $False
     )
-    
+
     if ((Test-Path .terraform-version) -and (-not $TFVersion)) {
         $TFVersion = Get-Content .terraform-version
         # TODO regex validate the version
         Write-Verbose "Found .terraform-version $TFVersion"
+    }
+
+    # HACK:  
+    #
+    # Due to positional parameters the first unnamed parameter
+    # is passed to $TFVersion. This catches non version parameters
+    # intended to pass to the terraform run.
+    if (-not ($TFVersion -match '^0\.\d\d?\.\d\d?$')) {
+        # Build $TFargs and null $TFVersion for default preference
+        $TFargs = @($TFVersion) + $args
+        $TFVersion = $null
+    } else {
+        $TFArgs = $args
     }
 
     # If Version still isn't set
@@ -65,7 +78,7 @@ Terraform version $($TFVersion) not installed. Run either
         throw 'Unable to confirm Code Signature of terraform binary'
     }
 
-    & (Get-TerraformPath -TFVersion $TFVersion) $args
+    & (Get-TerraformPath -TFVersion $TFVersion) $TFargs
 }
 
 Set-Alias -Name terraform -Value Invoke-Terraform
