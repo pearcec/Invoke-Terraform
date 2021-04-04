@@ -1,4 +1,29 @@
+<#
+    .SYNOPSIS
+        Set a user preference for Invoke-Terraform to modify default behavior.
+    .DESCRIPTION
+        Set a user preference for Invoke-Terraform to modify default behavior.
+    .PARAMETER TFPreferences
+        A Hastable of user preferences.
+    .PARAMETER Clear
+        Remove ALL user preferences.
+    .EXAMPLE
+        Set-TerraformPreference -TFPreferences @{'AutoDownload'=$true}
+
+        Sets user preference to automatically download terraform binaries.
+    .INPUTS
+        None. You cannot pipe objects to Set-TerraformPreference.
+    .OUTPUTS
+        System.Collections.Hashtable
+
+        Outputs a hashtable of user preferences.
+    .LINK
+        Get-TerraformPreference
+    .LINK
+        Online version: https://github.com/pearcec/Invoke-Terraform
+#>
 Function Set-TerraformPreference {
+    [OutputType([Hashtable])]
     param(
         [hashtable]$TFPreferences,
         [switch]$Clear

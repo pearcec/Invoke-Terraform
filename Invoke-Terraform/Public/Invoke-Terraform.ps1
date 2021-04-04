@@ -3,7 +3,30 @@
 Function Invoke-Terraform {
     <#
     .SYNOPSIS
-        Run terraform version based on preference.
+        Run terraform version based on user preference.
+    .DESCRIPTION
+        Run terraform version based on user preference.
+        Additional parameters are passed to the terraform binary.
+    .PARAMETER TFVersion
+        Override preferred version of terraform to run.
+    .PARAMETER SkipCodeSignature
+        Skip code signature verifcation.
+    .EXAMPLE
+        Invoke-Terraform -TFVersion 0.14.7
+
+        Runs terraform version 0.14.7
+    .EXAMPLE
+        Invoke-Terraform
+
+        Runs terraform version based on user preference or default preference.
+    .INPUTS
+        None. You cannot pipe objects to Invoke-Terraform.
+    .OUTPUTS
+        None. Invoke-Terraform returns nothing.
+    .LINK
+        Install-Terraform
+    .LINK
+        Online version: https://github.com/pearcec/Invoke-Terraform
     #>
     param(
         [string]$TFVersion,

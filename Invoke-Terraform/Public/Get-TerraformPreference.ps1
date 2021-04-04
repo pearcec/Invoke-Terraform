@@ -1,7 +1,31 @@
+<#
+    .SYNOPSIS
+        Get a preferences.
+    .DESCRIPTION
+        Get a preferences.  User preferences override default preferences.
+    .PARAMETER ClearCache
+        Clear preference cache.
+    .PARAMETER Stored
+        Output only user preferences.
+    .EXAMPLE
+        Get-TerraformPreference
+
+        List all user preferences.
+    .INPUTS
+        None. You cannot pipe objects to Get-TerraformPreference.
+    .OUTPUTS
+        System.Collections.Hashtable
+
+        Outputs a hashtable of user preferences.
+    .LINK
+        Set-TerraformPreference
+    .LINK
+        Online version: https://github.com/pearcec/Invoke-Terraform
+#>
 Function Get-TerraformPreference {
     param(
         [switch]$ClearCache = $False,
-        [Switch]$Stored = $False
+        [switch]$Stored = $False
     )
 
     if ($ClearCache) {
