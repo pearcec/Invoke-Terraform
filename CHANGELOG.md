@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Require PowerShellVersion 6.0 for ConvertFrom-Json -AsHashtable
 - Platform independent Get-TerraformPath
 - Add SkipCodeSignature and SkipChecksum preferences and parameters globally, with better error handling on gpg
+
 ## [0.1.0]
 
 ### Added
