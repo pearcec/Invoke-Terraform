@@ -28,8 +28,6 @@ Function Copy-TerraformBinary {
     $tmpfolder = (Join-Path $tmpPath $guid)
 
     Expand-Archive -Path $zipPath -DestinationPath $tmpFolder
-
-    Write-Debug "destPath:$destPath"
     Copy-Item -Path $tmpfolder/$binary -Destination $destPath -Force
 
     # TODO: Is Powershelly way?

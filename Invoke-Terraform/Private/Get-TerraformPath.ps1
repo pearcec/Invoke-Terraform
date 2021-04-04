@@ -5,7 +5,7 @@ Function Get-TerraformPath {
     )
     
     if ($isWindows) {
-        return "$((Get-TerraformPreference).path)\terraform_$($TFVersion).exe"
+        $fileExt = '.exe'
     }
-    return "$((Get-TerraformPreference).path)/terraform_$($TFVersion)"
+    return Join-Path (Get-TerraformPreference).Path "terraform_$($TFVersion)$($fileExt)"
 }

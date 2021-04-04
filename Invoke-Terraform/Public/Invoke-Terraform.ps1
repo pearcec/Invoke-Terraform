@@ -6,7 +6,8 @@ Function Invoke-Terraform {
         Run terraform version based on preference.
     #>
     param(
-        [string]$TFVersion
+        [string]$TFVersion,
+        [switch]$SkipCodeSignature = $False
     )
     
     if ((Test-Path .terraform-version) -and (-not $TFVersion)) {
@@ -21,22 +22,23 @@ Function Invoke-Terraform {
     }
 
     if (-not (Test-TerraformPath -TFVersion $TFVersion)) {
-        Write-Warning  "Terraform version ($TFVersion) not found."
+        Write-Warning "Terraform version $($TFVersion) not found."
 
         if ((Get-TerraformPreference).AutoDownload) {
-            try {
-                Install-Terraform -TFVersion $TFVersion
-            } catch {
-                throw "Failed to auto download terraform version ($TFVersion)"
-            }
+            Write-Verbose "Auto downloading terraform version $($TFVersion)"
+            Install-Terraform -TFVersion $TFVersion
         } else {
-            # TODO Let user know AutoDownload is an option or run Install-Terraform -TFVersion $TFVersion
-            throw "Terraform version ($TFVersion) not installed."
+            Write-Error @"
+Terraform version $($TFVersion) not installed. Run either
 
+    - Install-Terraform -TFVersion $($TFVersion)
+    - Set-TerraformPreference -TFPreferences @{'AutoDownload'=`$true}
+"@
+            throw ''
         }
     }
 
-    if (-not (Test-TerraformCodeSignature -TFVersion $TFVersion)) {
+    if (-not (Test-TerraformCodeSignature -TFVersion $TFVersion -SkipCodeSignature:$SkipCodeSignature)) {
         throw 'Unable to confirm Code Signature of terraform binary'
     }
 

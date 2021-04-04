@@ -1,11 +1,11 @@
-# Use [version] and [string]prerelease? or Use [string]
+# TODO: Use [version] and [string]prerelease? or Use [string]
 
-$tfPreferences = [PSCustomObject]@{
-    Path                       = Join-Path $HOME "bin" # c:\terraform? AppData?
+# TODO: Do I make this a class to validate?
+$TFPreferences = @{
+    Path                       = Join-Path $HOME 'bin' # c:\terraform? AppData?
     TFVersion                  = '0.14.7'
     ReleaseUrl                 = 'https://releases.hashicorp.com/terraform'
     AutoDownload               = $false
-    ConfirmCodeSignature       = $true
     # TODO: Fetch the latest $tfAutoLatest = $true - Updates AppData tfVersion
 
     # TODO: Do I need this?
@@ -17,10 +17,9 @@ $tfPreferences = [PSCustomObject]@{
     HashiCorpWindowsThumbprint = '35AB9FC834D217E9E7B1778FB1B97AF7C73792F2'
     PGPKeyServer               = 'keyserver.ubuntu.com'
     
-    # TODO: Nag if people for not getting their own signatures?
     SquelchChecksumWarning     = $false
-    
     SkipChecksum               = $false
+    SkipCodeSignature          = $false
 }
 
 $preferenceCache = @{}
@@ -29,6 +28,9 @@ $PSDefaultParameterValues = @{
     'Invoke-WebRequest:Verbose' = $false
     'Invoke-WebRequest:Debug'   = $false
 }
+
+$ProgressPreference = 'SilentlyContinue'
+
 
 # Dot source public/private functions
 $public = @(Get-ChildItem -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Public/*.ps1')  -Recurse -ErrorAction Stop)

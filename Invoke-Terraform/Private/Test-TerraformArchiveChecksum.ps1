@@ -17,11 +17,23 @@ function Test-TerraformArchiveChecksum {
         return $true
     }
 
-    & gpg --keyserver (Get-TerraformPreference).PGPKeyServer --recv (Get-TerraformPreference).HashiCorpPGPKeyId
+    gpg --list-keys (Get-TerraformPreference).HashiCorpPGPKeyId 2>&1 | Out-Null
     if ($LASTEXITCODE -ne 0) {
-        throw 'Unable to retrieve HashiCorp key'
+        gpg --quiet --keyserver (Get-TerraformPreference).PGPKeyServer --recv (Get-TerraformPreference).HashiCorpPGPKeyId
+        if ($LASTEXITCODE -ne 0) {
+            throw 'Unable to retrieve HashiCorp key'
+        }
     }
-    & gpg --verify $SHASigPath $SHAPath
+
+    gpg --verify $SHASigPath $SHAPath 2>&1 | Out-String -OutVariable output
+    if (-not ((Get-TerraformPreference).SquelchChecksumWarning) -and ($output | Select-String 'WARNING: This key is not certified' -Quiet)) {
+        Write-Warning @'
+The HashiCorp key has been installed but not certified. Run either of the following
+
+    - Confirm-TerraformHashiCorpKey
+    - Set-TerraformPreference -TFPreferences @{'SquelchChecksumWarning'=$true}
+'@
+    }
     if ($LASTEXITCODE -ne 0) {
         throw "Unable to verify signature on $($SHAPath)"
     }

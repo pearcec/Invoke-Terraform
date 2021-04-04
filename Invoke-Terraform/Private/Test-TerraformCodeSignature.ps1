@@ -1,9 +1,11 @@
 Function Test-TerraformCodeSignature {
     param(
         [parameter(Mandatory)]
-        [string]$TFVersion
+        [string]$TFVersion,
+        [switch]$SkipCodeSignature
     )
-    if (-not (Get-TerraformPreference).ConfirmCodeSignature) {
+    if ($SkipCodeSignature -or (Get-TerraformPreference).SkipCodeSignature) {
+        Write-Verbose 'Skipping Code Signature test'
         return $true
     }
     if ($IsWindows) {

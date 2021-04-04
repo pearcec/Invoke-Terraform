@@ -1,9 +1,6 @@
 Function Set-TerraformPreference {
     param(
-        [string]$TFVersion,
-        [string]$Path,
-        [boolean]$ConfirmCodeSignature,
-        [boolean]$AutoDownload,
+        [hashtable]$TFPreferences,
         [switch]$Clear
     )
     # Get existing values
@@ -15,8 +12,16 @@ Function Set-TerraformPreference {
     if ($Clear -and (Test-Path $HOME\.terraform\Invoke-Terraform.json)) {
         Remove-Item $HOME\.terraform\Invoke-Terraform.json -Force
     }
-    # Sort through loading and saving only what was preferred. (There a module to support this?)
-    $tfPreferences.TFVersion = $TFVersion
-    $tfPreferences | ConvertTo-Json -Depth 1 | Set-Content -Path $HOME\.terraform\Invoke-Terraform.json
+
+    $existingTFPreferences = Get-TerraformPreference -Stored
+    # Load existing preferences
+    if ($existingTFPreferences.Count -gt 0) {
+        $existingTFPreferences.keys | Where-Object {
+            $_ -notin $TFPreferences.keys
+        } | ForEach-Object { 
+            $TFPreferences.Add($_, $existingTFPreferences.Item($_) )
+        }
+    }
+    $TFPreferences | ConvertTo-Json -Depth 1 | Set-Content -Path $HOME\.terraform\Invoke-Terraform.json
     Get-TerraformPreference -ClearCache
 }
