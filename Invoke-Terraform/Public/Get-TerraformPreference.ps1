@@ -28,11 +28,18 @@ Function Get-TerraformPreference {
         [switch]$Stored = $False
     )
 
+    if ($Stored) {
+        if ((Test-Path -Path $HOME\.terraform\Invoke-Terraform.json -PathType leaf)) {
+            return Get-Content -Path $HOME\.terraform\Invoke-Terraform.json | ConvertFrom-Json -AsHashtable
+        }
+        return @{}
+    }
+
     if ($ClearCache) {
         Write-Verbose 'Clearing script preference cache'
         $script:preferenceCache = @{}
     }
-    
+
     if ($script:preferenceCache.Count -eq 0) {
         Write-Verbose 'Loading preferences'
         if ((Test-Path -Path $HOME\.terraform\Invoke-Terraform.json -PathType leaf)) {

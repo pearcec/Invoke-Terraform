@@ -33,12 +33,6 @@ Function Invoke-Terraform {
         [switch]$SkipCodeSignature = $False
     )
 
-    if ((Test-Path .terraform-version) -and (-not $TFVersion)) {
-        $TFVersion = Get-Content .terraform-version
-        # TODO regex validate the version
-        Write-Verbose "Found .terraform-version $TFVersion"
-    }
-
     # HACK:  
     #
     # Due to positional parameters the first unnamed parameter
@@ -50,6 +44,12 @@ Function Invoke-Terraform {
         $TFVersion = $null
     } else {
         $TFArgs = $args
+    }
+
+    if ((Test-Path .terraform-version) -and (-not $TFVersion)) {
+        $TFVersion = Get-Content .terraform-version
+        # TODO regex validate the version
+        Write-Verbose "Found .terraform-version $TFVersion"
     }
 
     # If Version still isn't set

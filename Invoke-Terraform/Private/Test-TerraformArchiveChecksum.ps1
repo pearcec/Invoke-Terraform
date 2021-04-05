@@ -25,7 +25,11 @@ function Test-TerraformArchiveChecksum {
         }
     }
 
+    # TODO: This is screwing with psake
     gpg --verify $SHASigPath $SHAPath 2>&1 | Out-String -OutVariable output
+    if ($LASTEXITCODE -ne 0) {
+        throw "Unable to verify signature on $($SHAPath)"
+    }
     if (-not ((Get-TerraformPreference).SquelchChecksumWarning) -and ($output | Select-String 'WARNING: This key is not certified' -Quiet)) {
         Write-Warning @'
 The HashiCorp key has been installed but not certified. Run either of the following
@@ -33,9 +37,6 @@ The HashiCorp key has been installed but not certified. Run either of the follow
     - Confirm-TerraformHashiCorpKey
     - Set-TerraformPreference -TFPreferences @{'SquelchChecksumWarning'=$true}
 '@
-    }
-    if ($LASTEXITCODE -ne 0) {
-        throw "Unable to verify signature on $($SHAPath)"
     }
 
     $SHASum = (Get-FileHash $ZipPath).Hash
