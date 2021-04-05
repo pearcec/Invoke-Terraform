@@ -60,12 +60,12 @@ security tolerance:
 
 | Name | Description |
 |------|-------------|
-HashiCorpPGPThumbprint     | '91A6E7F85D05C65630BEF18951852D87348FFC4C'
-HashiCorpPGPKeyId          | '0x51852D87348FFC4C'
-HashiCorpTeamIdentifier    | 'D38WU7D763'
-HashiCorpWindowsThumbprint | '35AB9FC834D217E9E7B1778FB1B97AF7C73792F2'
-PGPKeyServer               | 'keyserver.ubuntu.com'
-SquelchChecksumWarning     | Turn off warning from gpgp when HashiCorp imported key has not be signed. Defaults to false.
+HashiCorpPGPThumbprint     | 91A6E7F85D05C65630BEF18951852D87348FFC4C
+HashiCorpPGPKeyId          | 0x51852D87348FFC4C
+HashiCorpTeamIdentifier    | D38WU7D763
+HashiCorpWindowsThumbprint | 35AB9FC834D217E9E7B1778FB1B97AF7C73792F2
+PGPKeyServer               | keyserver.ubuntu.com
+SquelchChecksumWarning     | Turn off warning from gpg when HashiCorp imported key has not be signed. Defaults to false.
 SkipChecksum               | Turn off release archive checksum verification via gpg. Defaults to false.
 SkipCodeSignature          | Turn off code signature verification. Defaults to false.
 
