@@ -15,5 +15,5 @@
         Online version: https://github.com/pearcec/Invoke-Terraform
 #>
 Function Confirm-TerraformHashicorpKey {
-    & gpg --sign-key (Get-TerraformPreference).HashiCorpPGPKeyId
+    & gpg --sign-key (Get-TerraformConfiguration).HashiCorpPGPKeyId
 }

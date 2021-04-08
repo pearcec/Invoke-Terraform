@@ -4,7 +4,7 @@ Function Copy-TerraformBinary {
         [string]$ZipPath
     )
 
-    $installPath = (Get-TerraformPreference).Path
+    $installPath = (Get-TerraformConfiguration).TFPath
 
     if (-not (Test-Path $installPath -PathType Container)) {
         if (-not (New-Item -Path $installPath -ItemType 'directory')) {

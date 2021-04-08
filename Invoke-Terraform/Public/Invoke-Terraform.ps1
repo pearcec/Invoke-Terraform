@@ -54,13 +54,13 @@ Function Invoke-Terraform {
 
     # If Version still isn't set
     if (-not $TFVersion) {
-        $TFVersion = (Get-TerraformPreference).TFVersion
+        $TFVersion = (Get-TerraformConfiguration).TFVersion
     }
 
     if (-not (Test-TerraformPath -TFVersion $TFVersion)) {
         Write-Warning "Terraform version $($TFVersion) not found."
 
-        if ((Get-TerraformPreference).AutoDownload) {
+        if ((Get-TerraformConfiguration).AutoDownload) {
             Write-Verbose "Auto downloading terraform version $($TFVersion)"
             Install-Terraform -TFVersion $TFVersion
         } else {
@@ -68,7 +68,7 @@ Function Invoke-Terraform {
 Terraform version $($TFVersion) not installed. Run either
 
     - Install-Terraform -TFVersion $($TFVersion)
-    - Set-TerraformPreference -TFPreferences @{'AutoDownload'=`$true}
+    - Set-TerraformAutoDownload `$true
 "@
             throw ''
         }
