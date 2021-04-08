@@ -25,7 +25,7 @@ Function Get-TerraformBinary {
         throw $_
     }
 
-    try { 
+    try {
         Invoke-WebRequest -Uri $shaUrl -OutFile $shaPath
     } catch {
         throw "Unable to request $($shaUrl)"

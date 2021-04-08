@@ -19,12 +19,26 @@
         Online version: https://github.com/pearcec/Invoke-Terraform
 #>
 Function Set-TerraformVersion {
+    [cmdletbinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     param(
         [parameter(Mandatory)]
         [string]$TFVersion
     )
-    Write-Verbose "Setting TFVersion configuration to version $($TFVersion)"
-    Set-TerraformConfiguration @{ TFVersion = $TfVersion }
+    begin {
+        Write-Debug -Message 'Beginning'
+        $configurationPath = Get-ConfigurationPath
+    }
+
+    process {
+        if ($PSCmdlet.ShouldProcess($configurationPath, "Setting TFVesion configuration version to $($TFVersion)")) {
+            Write-Verbose "Setting TFVersion configuration version to $($TFVersion)"
+            Set-TerraformConfiguration @{ TFVersion = $TfVersion } -Confirm:$False
+        }
+    }
+
+    end {
+        Write-Debug -Message 'Ending'
+    }
 }
 
 Set-Alias -Name Switch-Terraform -Value Set-TerraformVersion

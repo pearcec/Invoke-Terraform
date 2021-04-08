@@ -33,7 +33,7 @@ Function Invoke-Terraform {
         [switch]$SkipCodeSignature = $False
     )
 
-    # HACK:  
+    # HACK:
     #
     # Due to positional parameters the first unnamed parameter
     # is passed to $TFVersion. This catches non version parameters

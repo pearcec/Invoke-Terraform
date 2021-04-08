@@ -19,10 +19,23 @@
         Online version: https://github.com/pearcec/Invoke-Terraform
 #>
 function Set-TerraformAutoDownload {
+    [cmdletbinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     param(
         [parameter(Mandatory)]
         [boolean]$AutoDownload
     )
-    Write-Verbose "Setting AutoDownload configuration to $($AutoDownload)"
-    Set-TerraformConfiguration @{ AutoDownload = $AutoDownload }
+    begin {
+        Write-Debug -Message 'Beginning'
+        $configurationPath = Get-ConfigurationPath
+    }
+
+    process {
+        if ($PSCmdlet.ShouldProcess($configurationPath, "Setting AutoDownload configuration to $($AutoDownload)")) {
+            Write-Verbose "Setting AutoDownload configuration to $($AutoDownload)"
+            Set-TerraformConfiguration @{ AutoDownload = $AutoDownload } -Confirm:$False
+        }
+    }
+    end {
+        Write-Debug -Message 'Ending'
+    }
 }

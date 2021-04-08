@@ -3,7 +3,7 @@ Function Get-TerraformPath {
         [parameter(Mandatory)]
         [string]$TFVersion
     )
-    
+
     if ($isWindows) {
         $fileExt = '.exe'
     }
