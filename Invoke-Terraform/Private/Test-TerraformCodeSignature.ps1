@@ -15,7 +15,7 @@ Function Test-TerraformCodeSignature {
         return $tfthumbprint -eq (Get-TerraformConfiguration).HashiCorpWindowsThumbprint
     }
     if ($IsMacOs) {
-        $tfThumbprint = (codesign --verify -d --verbose=2 (Get-TerraformPath -TFVersion $TFVersion) | Select-String TeamIdentifier).ToString().Split('=')[1]
+        $tfThumbprint = (codesign --verify -d --verbose=2 (Get-TerraformPath -TFVersion $TFVersion) 2>&1 | Select-String TeamIdentifier).ToString().Split('=')[1]
         return $tfthumbprint -eq (Get-TerraformConfiguration).HashiCorpTeamIdentifier
     }
     if ($IsLinux) {
