@@ -25,8 +25,7 @@ function Test-TerraformArchiveChecksum {
         }
     }
 
-    # TODO: This is screwing with psake
-    gpg --verify $SHASigPath $SHAPath 2>&1 | Out-String -OutVariable output
+    gpg --verify $SHASigPath $SHAPath
     if ($LASTEXITCODE -ne 0) {
         throw "Unable to verify signature on $($SHAPath)"
     }

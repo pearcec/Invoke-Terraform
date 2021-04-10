@@ -1,5 +1,5 @@
 @{
-    TFPath                     = Join-Path $PSScriptRoot '..' 'bin'
+    TFPath                     = Join-Path -Path $PSScriptRoot -ChildPath '..' -AdditionalChildPath 'bin'
     TFVersion                  = '0.14.7'
     ReleaseUrl                 = 'https://releases.hashicorp.com/terraform'
     AutoDownload               = $false
@@ -9,7 +9,7 @@
     HashiCorpTeamIdentifier    = 'D38WU7D763'
     HashiCorpWindowsThumbprint = '35AB9FC834D217E9E7B1778FB1B97AF7C73792F2'
     PGPKeyServer               = 'keyserver.ubuntu.com'
-    
+
     SquelchChecksumWarning     = $false
     SkipChecksum               = $false
     SkipCodeSignature          = $false

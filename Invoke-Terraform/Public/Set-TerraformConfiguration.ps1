@@ -18,9 +18,10 @@ function Set-TerraformConfiguration {
         }
 
         # Drop keys not defined by default configuration
-        $Configuration.keys | Where-Object {
+        $remove = $Configuration.keys | Where-Object {
             $_ -notin $existingConfiguration.keys
-        } | ForEach-Object {
+        }
+        $remove | ForEach-Object {
             $Configuration.Remove($_)
         }
 

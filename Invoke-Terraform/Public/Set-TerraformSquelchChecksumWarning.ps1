@@ -3,7 +3,7 @@
         Set squelch checksum warning configuration.
     .DESCRIPTION
         Set squelch checksum warning configuration.
-    .PARAMETER AutoDownload
+    .PARAMETER SquelchChecksumWarning
         Either true or false.
     .EXAMPLE
         Set-TerraformSquelchChecksumWarning $true
