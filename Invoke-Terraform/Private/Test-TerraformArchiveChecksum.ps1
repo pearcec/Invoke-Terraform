@@ -17,7 +17,7 @@ function Test-TerraformArchiveChecksum {
         return $true
     }
 
-    gpg --list-keys (Get-TerraformConfiguration).HashiCorpPGPKeyId 2>&1 | Out-Null
+    gpg --list-keys (Get-TerraformConfiguration).HashiCorpPGPKeyId # 2>&1 | Out-Null
     if ($LASTEXITCODE -ne 0) {
         gpg --quiet --keyserver (Get-TerraformConfiguration).PGPKeyServer --recv (Get-TerraformConfiguration).HashiCorpPGPKeyId
         if ($LASTEXITCODE -ne 0) {
