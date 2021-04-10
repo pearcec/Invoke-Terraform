@@ -7,8 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.3.0]
 
-## Changed
+### Changed
 - BREAKING: Refactor to use Configuration Module. Existing configurations are ignored.
+- Fix PSAnalyzer complaints
+
+### Added
+- Add ShouldProcess on Set cmdlets
+- Add GH Actions testing and publishing
+- Adopt PowerShellBuild.
+- Add pester testd
+- Add .gitignore.
+- Add standard build.ps1, psakeFile.ps1 and requirements.psd1.
+
 
 ## [0.2.0]
 
