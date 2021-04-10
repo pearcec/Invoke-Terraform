@@ -3,9 +3,9 @@ Function Get-TerraformPath {
         [parameter(Mandatory)]
         [string]$TFVersion
     )
-    
+
     if ($isWindows) {
         $fileExt = '.exe'
     }
-    return Join-Path (Get-TerraformPreference).Path "terraform_$($TFVersion)$($fileExt)"
+    return Join-Path (Get-TerraformConfiguration).TFPath "terraform_$($TFVersion)$($fileExt)"
 }

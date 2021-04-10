@@ -7,9 +7,9 @@ Function Get-TerraformBinary {
 
     $platform = Get-TerraformPlatform
     $archiveName = 'terraform_{0}_{1}_amd64.zip' -f $TFVersion, $platform
-    $zipUrl = '{0}/{1}/terraform_{1}_{2}_amd64.zip' -f (Get-TerraformPreference).ReleaseUrl, $TFVersion, $platform
-    $shaUrl = '{0}/{1}/terraform_{1}_SHA256SUMS' -f (Get-TerraformPreference).ReleaseUrl, $TFVersion
-    $shaSigUrl = '{0}/{1}/terraform_{1}_SHA256SUMS.sig' -f (Get-TerraformPreference).ReleaseUrl, $TFVersion
+    $zipUrl = '{0}/{1}/terraform_{1}_{2}_amd64.zip' -f (Get-TerraformConfiguration).ReleaseUrl, $TFVersion, $platform
+    $shaUrl = '{0}/{1}/terraform_{1}_SHA256SUMS' -f (Get-TerraformConfiguration).ReleaseUrl, $TFVersion
+    $shaSigUrl = '{0}/{1}/terraform_{1}_SHA256SUMS.sig' -f (Get-TerraformConfiguration).ReleaseUrl, $TFVersion
 
     $tmpPath = [System.IO.Path]::GetTempPath()
     [string] $guid = [System.Guid]::NewGuid()
@@ -25,7 +25,7 @@ Function Get-TerraformBinary {
         throw $_
     }
 
-    try { 
+    try {
         Invoke-WebRequest -Uri $shaUrl -OutFile $shaPath
     } catch {
         throw "Unable to request $($shaUrl)"

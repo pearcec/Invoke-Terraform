@@ -7,7 +7,7 @@ Function Install-TerraformBinary {
     )
 
     $zipPath = Get-TerraformBinary -TFVersion $TFVersion -SkipChecksum:$SkipChecksum
- 
+
     try {
         Copy-TerraformBinary -ZipPath $zipPath
     } catch {

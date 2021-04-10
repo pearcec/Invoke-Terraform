@@ -3,7 +3,7 @@ function Get-TerraformPlatform {
     if ($IsWindows) {
         return 'windows'
     }
-    
+
     if ($IsLinux) {
         return 'linux'
     }
