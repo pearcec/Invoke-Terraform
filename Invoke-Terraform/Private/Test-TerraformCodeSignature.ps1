@@ -15,8 +15,10 @@ Function Test-TerraformCodeSignature {
         return $tfthumbprint -eq (Get-TerraformConfiguration).HashiCorpWindowsThumbprint
     }
     if ($IsMacOs) {
-        $tfThumbprint = (codesign --verify -d --verbose=2 (Get-TerraformPath -TFVersion $TFVersion) 2>&1 | Select-String TeamIdentifier).ToString().Split('=')[1]
-        return $tfthumbprint -eq (Get-TerraformConfiguration).HashiCorpTeamIdentifier
+        # $tfThumbprint = codesign --verify -d --verbose=2 (Get-TerraformPath -TFVersion $TFVersion) | Select-String TeamIdentifier).ToString().Split('=')[1]
+        # return $tfthumbprint -eq (Get-TerraformConfiguration).HashiCorpTeamIdentifier
+        codesign --verify -d --verbose=2 (Get-TerraformPath -TFVersion $TFVersion)
+        return $LASTEXITCODE -eq 0
     }
     if ($IsLinux) {
         Write-Verbose 'CodeSignature check at runtime is not supported on Linux.'
