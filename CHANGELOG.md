@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - `Install-Terraform` defaults to latest when `-TFVersion` is not passed (https://github.com/pearcec/Invoke-Terraform/issues/10)
-
+- Add stock contributing guidelines
+- Add stock pull request template
 
 ## [0.3.0]
 
