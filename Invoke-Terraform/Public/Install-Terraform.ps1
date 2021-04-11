@@ -24,11 +24,14 @@
 #>
 Function Install-Terraform {
     param(
-        [parameter(Mandatory)]
         [string]$TFVersion,
         [switch]$SkipChecksum = $False,
         [switch]$SkipCodeSignature = $False
     )
+
+    if (-not $TFVersion) {
+        $TFVersion = Get-TerraformLatestRelease
+    }
 
     if (Test-TerraformPath -TFVersion $TFVersion) {
         Write-Verbose "Terraform $($TFversion) already installed."
