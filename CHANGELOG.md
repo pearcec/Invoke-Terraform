@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.4.0]
+
+### Added
+
+- `Install-Terraform` defaults to latest when `-TFVersion` is not passed (https://github.com/pearcec/Invoke-Terraform/issues/10)
+- Add stock contributing guidelines
+- Add stock pull request template
+
 ## [0.3.0]
 
 ### Changed

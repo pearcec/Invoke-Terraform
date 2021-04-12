@@ -13,7 +13,7 @@ Install a version of terraform.
 ## SYNTAX
 
 ```
-Install-Terraform [-TFVersion] <String> [-SkipChecksum] [-SkipCodeSignature] [<CommonParameters>]
+Install-Terraform [[-TFVersion] <String>] [-SkipChecksum] [-SkipCodeSignature] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,7 +38,7 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 1
 Default value: None
 Accept pipeline input: False
