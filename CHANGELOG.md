@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.5.0]
+
+### Changed
+
+- `Invoke-Terraform` recursively searches up for `.terraform-version` stopping at root ([#12](https://github.com/pearcec/Invoke-Terraform/issues/12))
+
 ## [0.4.0]
 
 ### Added

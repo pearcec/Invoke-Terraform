@@ -46,8 +46,9 @@ Function Invoke-Terraform {
         $TFArgs = $args
     }
 
-    if ((Test-Path .terraform-version) -and (-not $TFVersion)) {
-        $TFVersion = Get-Content .terraform-version
+    $terraformVersionFile = Get-TerraformVersion -Path (Get-Item .).FullName
+    if ($terraformVersionFile -and (-not $TFVersion)) {
+        $TFVersion = Get-Content $terraformVersionFile
         # TODO regex validate the version
         Write-Verbose "Found .terraform-version $TFVersion"
     }
