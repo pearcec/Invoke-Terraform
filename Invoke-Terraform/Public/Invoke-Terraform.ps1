@@ -46,7 +46,7 @@ Function Invoke-Terraform {
         $TFArgs = $args
     }
 
-    $terraformVersionFile = Get-TerraformVersion -Path $PSScriptRoot
+    $terraformVersionFile = Get-TerraformVersion -Path (Get-Item .).FullName
     if ($terraformVersionFile -and (-not $TFVersion)) {
         $TFVersion = Get-Content $terraformVersionFile
         # TODO regex validate the version

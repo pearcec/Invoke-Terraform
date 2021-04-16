@@ -10,13 +10,13 @@ Function Get-TerraformVersion {
     }
 
     $Parent = Split-Path $Path
-    # Stop at users home directory
     if ($Parent -eq $Home) {
         return $null
     }
     if ($Parent) {
-        Get-TerraformVersion $Parent
-    } else {
-        return $null
+        return Get-TerraformVersion $Parent
     }
+
+    # Shouldn't get here
+    return $null
 }
