@@ -1,4 +1,4 @@
-Describe 'Set-TerraformBinary' {
+Describe 'Set-TerraformStableBinary' {
     BeforeAll {
         $outputDir = [IO.Path]::Combine($ENV:BHProjectPath, 'Output')
         $outputModDir = [IO.Path]::Combine($outputDir, $env:BHProjectName)
@@ -10,8 +10,8 @@ Describe 'Set-TerraformBinary' {
         New-Item $outputBinDir -ItemType directory
     }
     It 'has version passed 0.14.2' {
-        Set-TerraformBinary -TFVersion 0.14.2 -Confirm:$false
-        $testPathBin = Get-TerraformBinary
+        Set-TerraformStableBinary -TFVersion 0.14.2 -Confirm:$false
+        $testPathBin = Get-TerraformStableBinary
         $test = & $testPathBin -version | Select-String -Pattern ('Terraform v{0}' -f '0.14.2') -Quiet
         $test | Should -BeTrue
     }
@@ -22,8 +22,8 @@ Describe 'Set-TerraformBinary' {
     
         $response = Invoke-RestMethod 'https://api.github.com/repos/hashicorp/terraform/releases/latest' -Method 'GET' -Headers $headers
         $latest = $response.name.substring(1)
-        Set-TerraformBinary -Confirm:$false
-        $testPathBin = Get-TerraformBinary
+        Set-TerraformStableBinary -Confirm:$false
+        $testPathBin = Get-TerraformStableBinary
         $test = & $testPathBin -version | Select-String -Pattern ('Terraform v{0}' -f $latest) -Quiet
         $test | Should -BeTrue
     }

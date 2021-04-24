@@ -4,19 +4,19 @@
     .DESCRIPTION
         Get stable path for terraform binary (ie. terraform.exe or terraform)
     .EXAMPLE
-        Get-TerraformBinary
+        Get-TerraformStableBinary
 
         Returns stable path for terraform binary
     .INPUTS
-        None. You cannot pipe objects to Set-TerraformBinary.
+        None. You cannot pipe objects to Set-TerraformStableBinary.
     .OUTPUTS
         Returns a path.
     .LINK
-        Set-TerraformBinary
+        Set-TerraformStableBinary
     .LINK
         Online version: https://github.com/pearcec/Invoke-Terraform
 #>
-function Get-TerraformBinary {
+function Get-TerraformStableBinary {
 
     $installPath = (Get-TerraformConfiguration).TFPath
     $binary = 'terraform'
@@ -30,10 +30,13 @@ function Get-TerraformBinary {
     }
     Write-Error @"
 Terraform static binary not set. Run either:
-    - Set-TerraformBinary
+    - Set-TerraformStableBinary
 or:
-    - Set-TerraformAutoSwitchBinary `$true
-    - Switch-Terraform -TFVersion:[TFversion]
+    - Set-TerraformAutoStableBinary `$true
+    - Set-TerraformVersion -TFVersion:[TFversion]
+or:
+    - Set-TerraformAutoStableBinary `$true
+    - Install-Terraform
 "@
     throw ''
 }

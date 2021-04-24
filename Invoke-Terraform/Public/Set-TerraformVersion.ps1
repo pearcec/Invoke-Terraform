@@ -27,7 +27,7 @@ Function Set-TerraformVersion {
     begin {
         Write-Debug -Message 'Beginning'
         $configurationPath = Get-ConfigurationPath
-        $autoSwitchBinary = (Get-TerraformConfiguration).autoSwitchBinary
+        $AutoStableBinary = (Get-TerraformConfiguration).AutoStableBinary
     }
 
     process {
@@ -35,8 +35,8 @@ Function Set-TerraformVersion {
             Write-Verbose "Setting TFVersion configuration version to $($TFVersion)"
             Set-TerraformConfiguration @{ TFVersion = $TfVersion } -Confirm:$False
         }
-        if ($autoSwitchBinary) {
-            Set-TerraformBinary -TFVersion $TFVersion -Confirm:$ConfirmPreference
+        if ($AutoStableBinary) {
+            Set-TerraformStableBinary -TFVersion $TFVersion -Confirm:$ConfirmPreference
         }
     }
 

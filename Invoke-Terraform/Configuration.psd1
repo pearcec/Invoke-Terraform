@@ -3,7 +3,7 @@
     TFVersion                  = '0.15.0'
     ReleaseUrl                 = 'https://releases.hashicorp.com/terraform'
     AutoDownload               = $false
-    AutoSwitchBinary           = $false
+    AutoStableBinary           = $false
 
     HashiCorpPGPThumbprint     = '91A6E7F85D05C65630BEF18951852D87348FFC4C'
     HashiCorpPGPKeyId          = '0x51852D87348FFC4C'

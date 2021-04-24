@@ -17,8 +17,8 @@ Describe 'Get-TerraformConfiguration' {
     It 'has default AutoDownload' {
         $script:setting.AutoDownload | Should -Be $script:defaultConfiguration.AutoDownload
     }
-    It 'has default AutoSwitchBinary' {
-        $script:setting.AutoSwitchBinary | Should -Be $script:defaultConfiguration.AutoSwitchBinary
+    It 'has default AutoStableBinary' {
+        $script:setting.AutoStableBinary | Should -Be $script:defaultConfiguration.AutoStableBinary
     }
     It 'has default HashiCorpPGPThumbprint' {
         $script:setting.HashiCorpPGPThumbprint | Should -Be $script:defaultConfiguration.HashiCorpPGPThumbprint

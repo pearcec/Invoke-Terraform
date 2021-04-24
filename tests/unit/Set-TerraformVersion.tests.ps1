@@ -15,9 +15,9 @@ Describe 'Set-TerraformVersion' {
         $setting.TFVersion | Should -Be '0.14.8'
     }
     It 'has version passed 0.14.3' {
-        Set-TerraformAutoSwitchBinary -AutoSwitchBinary:$true -Confirm:$false
+        Set-TerraformAutoStableBinary -AutoStableBinary:$true -Confirm:$false
         Set-TerraformVersion -TFVersion 0.14.3 -Confirm:$false
-        $testPathBin = Get-TerraformBinary
+        $testPathBin = Get-TerraformStableBinary
         $test = & $testPathBin -version | Select-String -Pattern ('Terraform v{0}' -f '0.14.3') -Quiet
         $test | Should -BeTrue
     }

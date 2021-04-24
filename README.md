@@ -34,14 +34,14 @@ terraform -TFVersion 0.14.8 -version
 | Command                             | Description                                                                                |
 | ----------------------------------- | ------------------------------------------------------------------------------------------ |
 | Confirm-TerraformHashicorpKey       | Confirm the HashiCorp Security Key in gpg.                                                 |
-| Get-TerraformBinary                 | Get the path for the current static installation of terraform binary.                      |
 | Get-TerraformConfiguration          | Get Invoke-Terraform configurations.                                                       |
+| Get-TerraformStableBinary           | Get the path for the current static installation of terraform binary.                      |
 | Install-Terraform                   | Install a version of terraform.                                                            |
 | Invoke-Terraform                    | Run terraform.                                                                             |
 | Set-TerraformAutoDownload           | Set Invoke-Terraform to automatically download terraform if needed.                        |
-| Set-TerraformAutoSwitchBinary       | Set Set-TerraformVersion to automatically switch static  installation of terraform binary. |
-| Set-TerraformBinary                 | Set version of static installation of terraform binary.                                    |
+| Set-TerraformAutoStableBinary       | Set Set-TerraformVersion to automatically switch static  installation of terraform binary. |
 | Set-TerraformConfiguration          | Set Invoke-Terraform configurations.                                                       |
+| Set-TerraformStableBinary           | Set version of static installation of terraform binary.                                    |
 | Set-TerraformSquelchChecksumWarning | Squelch checksum warnings.                                                                 |
 | Set-TerraformVersion                | Change default version of terraform to invoke.                                             |
 | Switch-Terraform                    | Set-TerraformVersion alias.                                                                |
@@ -56,7 +56,7 @@ terraform -TFVersion 0.14.8 -version
 | TFVersion        | Preferred version of terraform.                                                                                                    |
 | ReleaseUrl       | Defaults to https://releases.hashicorp.com/terraform                                                                               |
 | AutoDownload     | Automatically download terraform when invoking if the binary is not installed. Defaults to false.                                  |
-| AutoSwitchBinary | Automatically switch the static binary to the TFVersion called with Set-TerraformVersion (ie Switch-Terraform). Defaults to false. |
+| AutoStableBinary | Automatically switch the static binary to the TFVersion called with Set-TerraformVersion (ie Switch-Terraform). Defaults to false. |
 
 ## Verification
 
@@ -88,7 +88,7 @@ It is recommended the `terraform` binary be removed from `$ENV:Path`.  Even thou
 
 ### VSCode
 
-If terraform is removed from your path as recommended, the [vscode-terraform](https://github.com/hashicorp/vscode-terraform) extension breaks. The `Set-TerraformBinary` has been added to provide a stable path name.  Run `Get-TerraformBinary` to retrieve the path. Use the following example for vscode settings: 
+If terraform is removed from your path as recommended, the [vscode-terraform](https://github.com/hashicorp/vscode-terraform) extension breaks. The `Set-TerraformStableBinary` has been added to provide a stable path name.  Run `Get-TerraformStableBinary` to retrieve the path. Use the following example for vscode settings: 
 
 ```json
 "terraform.languageServer": {

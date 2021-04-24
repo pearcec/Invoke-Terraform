@@ -10,23 +10,23 @@
     .PARAMETER SkipCodeSignature
         Skip code signature verifcation.
     .EXAMPLE
-        Set-TerraformBinary
+        Set-TerraformStableBinary
 
         Sets the latest terraform version to the static name terraform.exe or terraform
     .EXAMPLE
-        Set-TerraformBinary -TFVersion 0.14.7
+        Set-TerraformStableBinary -TFVersion 0.14.7
 
         Sets terraform version 0.14.7 to the static name terraform.exe or terraform
     .INPUTS
-        None. You cannot pipe objects to Set-TerraformBinary.
+        None. You cannot pipe objects to Set-TerraformStableBinary.
     .OUTPUTS
-        None. Set-TerraformBinary returns nothing.
+        None. Set-TerraformStableBinary returns nothing.
     .LINK
-        Get-TerraformBinary
+        Get-TerraformStableBinary
     .LINK
         Online version: https://github.com/pearcec/Invoke-Terraform
 #>
-function Set-TerraformBinary {
+function Set-TerraformStableBinary {
     [cmdletbinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     param(
         [string]$TFVersion,
