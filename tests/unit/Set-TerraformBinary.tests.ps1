@@ -12,7 +12,7 @@ Describe 'Set-TerraformBinary' {
     It 'has version passed 0.14.2' {
         Set-TerraformBinary -TFVersion 0.14.2 -Confirm:$false
         $testPathBin = Get-TerraformBinary
-        $test = & $testPathBin -version | Select-String ('Terraform v{0}' -f '0.14.2')
+        $test = & $testPathBin -version | Select-String -Pattern ('Terraform v{0}' -f '0.14.2') -Quiet
         $test | Should -BeTrue
     }
     It 'has latest release' {
@@ -24,7 +24,7 @@ Describe 'Set-TerraformBinary' {
         $latest = $response.name.substring(1)
         Set-TerraformBinary -Confirm:$false
         $testPathBin = Get-TerraformBinary
-        $test = & $testPathBin -version | Select-String ('Terraform v{0}' -f $latest)
+        $test = & $testPathBin -version | Select-String -Pattern ('Terraform v{0}' -f $latest) -Quiet
         $test | Should -BeTrue
     }
 }

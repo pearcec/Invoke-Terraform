@@ -18,7 +18,7 @@ Describe 'Invoke-Terraform' {
     It 'has version passed 0.14.6' {
         Set-TerraformVersion -TFVersion 0.14.5 -Confirm:$false
         Set-TerraformAutoDownload -AutoDownload:$true -Confirm:$false
-        Invoke-Terraform 0.14.6 -version | Tee-Object TestDrive:\version-0.14.6.txt
+        Invoke-Terraform 0.14.6 -version | Out-File TestDrive:\version-0.14.6.txt
         (Get-Content TestDrive:\version-0.14.6.txt)[0] | Should -Match 0.14.6
     }
     It 'has version 0.14.1 from .terraform-version' {
