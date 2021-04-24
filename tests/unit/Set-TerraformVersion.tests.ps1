@@ -18,7 +18,7 @@ Describe 'Set-TerraformVersion' {
         Set-TerraformAutoSwitchBinary -AutoSwitchBinary:$true -Confirm:$false
         Set-TerraformVersion -TFVersion 0.14.3 -Confirm:$false
         $testPathBin = Get-TerraformBinary
-        $test = & $testPathBin -version | Select-String ('Terraform v{0}' -f '0.14.3')
+        $test = & $testPathBin -version | Select-String -Pattern ('Terraform v{0}' -f '0.14.3') -Quiet
         $test | Should -BeTrue
     }
 }
