@@ -71,10 +71,13 @@
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = @(
         'Confirm-TerraformHashicorpKey'
+        'Get-TerraformBinary'
         'Get-TerraformConfiguration'
         'Install-Terraform'
         'Invoke-Terraform'
         'Set-TerraformAutoDownload'
+        'Set-TerraformAutoSwitchBinary'
+        'Set-TerraformBinary'
         'Set-TerraformConfiguration'
         'Set-TerraformSquelchChecksumWarning'
         'Set-TerraformVersion'

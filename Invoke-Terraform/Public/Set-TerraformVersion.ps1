@@ -27,12 +27,16 @@ Function Set-TerraformVersion {
     begin {
         Write-Debug -Message 'Beginning'
         $configurationPath = Get-ConfigurationPath
+        $autoSwitchBinary = (Get-TerraformConfiguration).autoSwitchBinary
     }
 
     process {
         if ($PSCmdlet.ShouldProcess($configurationPath, "Setting TFVesion configuration version to $($TFVersion)")) {
             Write-Verbose "Setting TFVersion configuration version to $($TFVersion)"
             Set-TerraformConfiguration @{ TFVersion = $TfVersion } -Confirm:$False
+        }
+        if ($autoSwitchBinary) {
+            Set-TerraformBinary -TFVersion $TFVersion -Confirm:$ConfirmPreference
         }
     }
 
