@@ -1,4 +1,4 @@
-Function Get-TerraformBinary {
+Function Get-TerraformZip {
     param(
         [parameter(Mandatory)]
         [string]$TFVersion,

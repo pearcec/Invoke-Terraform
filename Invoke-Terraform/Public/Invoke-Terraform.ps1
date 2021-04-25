@@ -66,9 +66,9 @@ Function Invoke-Terraform {
             Install-Terraform -TFVersion $TFVersion
         } else {
             Write-Error @"
-Terraform version $($TFVersion) not installed. Run either
-
+Terraform version $($TFVersion) not installed. Run either:
     - Install-Terraform -TFVersion $($TFVersion)
+or:
     - Set-TerraformAutoDownload `$true
 "@
             throw ''
