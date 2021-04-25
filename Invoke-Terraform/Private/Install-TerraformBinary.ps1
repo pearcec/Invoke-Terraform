@@ -6,10 +6,10 @@ Function Install-TerraformBinary {
         [switch]$SkipCodeSignature = $False
     )
 
-    $zipPath = Get-TerraformBinary -TFVersion $TFVersion -SkipChecksum:$SkipChecksum
+    $zipPath = Get-TerraformZip -TFVersion $TFVersion -SkipChecksum:$SkipChecksum
 
     try {
-        Copy-TerraformBinary -ZipPath $zipPath
+        Copy-TerraformBinary -TFVersion $TFVersion -ZipPath $zipPath
     } catch {
         Write-Error "Unable to copy binary from $zipPath."
         throw $_

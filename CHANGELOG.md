@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - `Invoke-Terraform` recursively searches up for `.terraform-version` stopping at root ([#12](https://github.com/pearcec/Invoke-Terraform/issues/12))
+- Provide a binary without a version reference in the filename ([#13](https://github.com/pearcec/Invoke-Terraform/issues/13))
 
 ## [0.4.0]
 
