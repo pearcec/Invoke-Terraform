@@ -16,7 +16,8 @@ Function Get-TerraformZip {
 
     $zipPath = (Join-Path $tmpPath "$($guid).zip")
     $shaPath = (Join-Path $tmpPath "$($guid)_SHA256SUMS")
-    $shaSigPath = (Join-Path $tmpPath "$($guid)_SHA256SUMS.sig")
+    $shaKeyId = ((Get-TerraformConfiguration).HashiCorpPGPKeyId).Substring(10)
+    $shaSigPath = (Join-Path $tmpPath "$($guid)_SHA256SUMS.$($shaKeyId).sig")
 
     try {
         Invoke-WebRequest -Uri $zipUrl -OutFile $zipPath

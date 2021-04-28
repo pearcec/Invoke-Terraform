@@ -20,9 +20,6 @@ Describe 'Get-TerraformConfiguration' {
     It 'has default AutoStableBinary' {
         $script:setting.AutoStableBinary | Should -Be $script:defaultConfiguration.AutoStableBinary
     }
-    It 'has default HashiCorpPGPThumbprint' {
-        $script:setting.HashiCorpPGPThumbprint | Should -Be $script:defaultConfiguration.HashiCorpPGPThumbprint
-    }
     It 'has default HashiCorpPGPKeyId' {
         $script:setting.HashiCorpPGPKeyId | Should -Be $script:defaultConfiguration.HashiCorpPGPKeyId
     }

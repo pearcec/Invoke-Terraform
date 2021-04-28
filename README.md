@@ -67,8 +67,7 @@ security tolerance:
 
 | Name                       | Description                                                                                 |
 | -------------------------- | ------------------------------------------------------------------------------------------- |
-| HashiCorpPGPThumbprint     | 91A6E7F85D05C65630BEF18951852D87348FFC4C                                                    |
-| HashiCorpPGPKeyId          | 0x51852D87348FFC4C                                                                          |
+| HashiCorpPGPKeyId          | 0x34365D9472D7468F                                                                          |
 | HashiCorpTeamIdentifier    | D38WU7D763                                                                                  |
 | HashiCorpWindowsThumbprint | 35AB9FC834D217E9E7B1778FB1B97AF7C73792F2                                                    |
 | PGPKeyServer               | keyserver.ubuntu.com                                                                        |

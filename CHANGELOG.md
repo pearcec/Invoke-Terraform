@@ -5,6 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.5.1]
+
+### Security
+
+- Updated GPG keys: due to [HCSEC-2021-12](https://discuss.hashicorp.com/t/hcsec-2021-12-codecov-security-event-and-hashicorp-gpg-key-exposure/23512) Codecov Security Event and HashiCorp GPG Key Exposure. See Terraform Updates for [HCSEC-2021-12](https://discuss.hashicorp.com/t/terraform-updates-for-hcsec-2021-12/23570) for guidance.
+
+If the following error is received
+
+```pwsh
+Install-Terraform -TFVersion 0.15.1
+
+gpg: Signature made 04/26/21 17:02:20 Eastern Daylight Time
+gpg:                using RSA key B36CBA91A2C0730C435FC280B0B441097685B676
+gpg: Can't check signature: No public key
+Exception: C:\Users\pearcec\Documents\PowerShell\Modules\Invoke-Terraform\0.5.1\Invoke-Terraform.psm1:173:9
+Line |
+ 173 |          throw "Unable to verify signature on $($SHAPath)"
+     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Unable to verify signature on
+     | C:\Users\pearcec\AppData\Local\Temp\8ce5da55-215d-465f-861f-9778ee719d5d_SHA256SUMS
+```
+
+Then update the Invoke-Terraform configuration:
+
+```pwsh
+Set-TerraformConfiguration -Configuration @{ HashiCorpPGPKeyId='0x34365D9472D7468F';}
+```
+
+### Changed
+
+- Slight documentation tweak
+- Removed unused HashiCorpPGPThumbprint
+- Source SHA256SUM signatures based on PGP Key ID
+
 ## [0.5.0]
 
 ### Changed
