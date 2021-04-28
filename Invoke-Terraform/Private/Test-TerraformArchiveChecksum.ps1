@@ -23,6 +23,9 @@ function Test-TerraformArchiveChecksum {
         if ($LASTEXITCODE -ne 0) {
             throw 'Unable to retrieve HashiCorp key'
         }
+    } else {
+        # Refresh incase of future revoke user will recevie warning
+        gpg --quiet --keyserver (Get-TerraformConfiguration).PGPKeyServer --recv (Get-TerraformConfiguration).HashiCorpPGPKeyId
     }
 
     gpg --verify $SHASigPath $SHAPath

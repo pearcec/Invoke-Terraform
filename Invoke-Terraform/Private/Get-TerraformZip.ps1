@@ -6,10 +6,12 @@ Function Get-TerraformZip {
     )
 
     $platform = Get-TerraformPlatform
+    $shaKeyId = ((Get-TerraformConfiguration).HashiCorpPGPKeyId).Substring(10)
+
     $archiveName = 'terraform_{0}_{1}_amd64.zip' -f $TFVersion, $platform
     $zipUrl = '{0}/{1}/terraform_{1}_{2}_amd64.zip' -f (Get-TerraformConfiguration).ReleaseUrl, $TFVersion, $platform
     $shaUrl = '{0}/{1}/terraform_{1}_SHA256SUMS' -f (Get-TerraformConfiguration).ReleaseUrl, $TFVersion
-    $shaSigUrl = '{0}/{1}/terraform_{1}_SHA256SUMS.sig' -f (Get-TerraformConfiguration).ReleaseUrl, $TFVersion
+    $shaSigUrl = '{0}/{1}/terraform_{1}_SHA256SUMS.{2}.sig' -f (Get-TerraformConfiguration).ReleaseUrl, $TFVersion, $shaKeyId
 
     $tmpPath = [System.IO.Path]::GetTempPath()
     [string] $guid = [System.Guid]::NewGuid()
