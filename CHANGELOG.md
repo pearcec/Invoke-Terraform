@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.6.0]
+
+### Fixed
+
+- Support for 1.0.0, making it the new default
+- Removed invalid description of Path from README.  `$HOME\bin` is no longer the default.
+
 ## [0.5.1]
 
 ### Security

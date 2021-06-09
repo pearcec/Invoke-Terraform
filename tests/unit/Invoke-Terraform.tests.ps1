@@ -30,4 +30,13 @@ Describe 'Invoke-Terraform' {
         (Get-Content TestDrive:\version-0.14.1.txt)[0] | Should -Match 0.14.1
         Remove-Item -Force -Path $terraformVersionFile
     }
+    It 'has version 1.0.0' {
+        Set-TerraformVersion -TFVersion 1.0.0 -Confirm:$false
+        Set-TerraformAutoDownload -AutoDownload:$true -Confirm:$false
+        Set-TerraformVersion -TFVersion 0.14.1 -Confirm:$false
+        Invoke-Terraform 1.0.0 -version | Out-File TestDrive:\version-1.0.0.txt
+        (Get-Content TestDrive:\version-1.0.0.txt)[0] | Should -Match 'v1.0.0'
+        Invoke-Terraform -TFVersion 1.0.0 -version | Out-File TestDrive:\version-1.0.0.txt
+        (Get-Content TestDrive:\version-1.0.0.txt)[0] | Should -Match 'v1.0.0'
+    }
 }

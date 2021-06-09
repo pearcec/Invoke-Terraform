@@ -1,6 +1,6 @@
 @{
     TFPath                     = Join-Path -Path $PSScriptRoot -ChildPath '..' -AdditionalChildPath 'bin'
-    TFVersion                  = '0.15.1'
+    TFVersion                  = '1.0.0'
     ReleaseUrl                 = 'https://releases.hashicorp.com/terraform'
     AutoDownload               = $false
     AutoStableBinary           = $false

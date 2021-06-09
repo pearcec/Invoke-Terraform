@@ -38,7 +38,7 @@ Function Invoke-Terraform {
     # Due to positional parameters the first unnamed parameter
     # is passed to $TFVersion. This catches non version parameters
     # intended to pass to the terraform run.
-    if (-not ($TFVersion -match '^0\.\d\d?\.\d\d?$')) {
+    if (-not ($TFVersion -match '^\d\d?\.\d\d?\.\d\d?$')) {
         # Build $TFargs and null $TFVersion for default preference
         $TFargs = @($TFVersion) + $args
         $TFVersion = $null

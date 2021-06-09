@@ -52,7 +52,7 @@ terraform -TFVersion 0.14.8 -version
 
 | Name             | Description                                                                                                                        |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Path             | Installation location for terraform binaries. Defaults to $HOME\bin.                                                               |
+| Path             | Installation location for terraform binaries.                                                               |
 | TFVersion        | Preferred version of terraform.                                                                                                    |
 | ReleaseUrl       | Defaults to https://releases.hashicorp.com/terraform                                                                               |
 | AutoDownload     | Automatically download terraform when invoking if the binary is not installed. Defaults to false.                                  |
