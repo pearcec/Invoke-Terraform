@@ -18,5 +18,6 @@ jobs:
         PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}
       shell: pwsh
       run: |
-        .\build.ps1 -Bootstrap -Task Init -ErrorAction:Continue
+        $ErrorActionPreference = 'SilentlyContinue'
+        .\build.ps1 -Bootstrap -Task Init
         .\build.ps1 -Task Publish
