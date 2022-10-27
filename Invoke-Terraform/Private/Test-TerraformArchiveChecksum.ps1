@@ -17,7 +17,7 @@ function Test-TerraformArchiveChecksum {
         return $true
     }
 
-    gpg --list-keys (Get-TerraformConfiguration).HashiCorpPGPKeyId # 2>&1 | Out-Null
+    $output = gpg --list-keys (Get-TerraformConfiguration).HashiCorpPGPKeyId 2>&1
     if ($LASTEXITCODE -ne 0) {
         gpg --quiet --keyserver (Get-TerraformConfiguration).PGPKeyServer --recv (Get-TerraformConfiguration).HashiCorpPGPKeyId
         if ($LASTEXITCODE -ne 0) {
@@ -28,9 +28,9 @@ function Test-TerraformArchiveChecksum {
         gpg --quiet --keyserver (Get-TerraformConfiguration).PGPKeyServer --recv (Get-TerraformConfiguration).HashiCorpPGPKeyId
     }
 
-    gpg --verify $SHASigPath $SHAPath
+    $output = gpg --verify $SHASigPath $SHAPath 2>&1
     if ($LASTEXITCODE -ne 0) {
-        throw "Unable to verify signature on $($SHAPath)"
+        throw "Unable to verify signature on $($SHAPath) : $($output)"
     }
     if (-not ((Get-TerraformConfiguration).SquelchChecksumWarning) -and ($output | Select-String 'WARNING: This key is not certified' -Quiet)) {
         Write-Warning @'
