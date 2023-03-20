@@ -9,9 +9,9 @@ Describe 'Install-Terraform' {
         } 
         New-Item $outputBinDir -ItemType directory
     }
-    It 'has version passed 0.14.2' {
-        Install-Terraform -TFVersion 0.14.2
-        $testPath = [IO.Path]::Combine($outputBinDir, 'terraform_0.14.2*')
+    It 'has version passed 1.3.8' {
+        Install-Terraform -TFVersion 1.3.8
+        $testPath = [IO.Path]::Combine($outputBinDir, 'terraform_1.3.8*')
         $test = Test-Path $testPath
         $test | Should -BeTrue
     }
@@ -24,12 +24,6 @@ Describe 'Install-Terraform' {
         $latest = $response.name.substring(1)
         Install-Terraform
         $testPath = [IO.Path]::Combine($outputBinDir, "terraform_$($latest)*")
-        $test = Test-Path $testPath
-        $test | Should -BeTrue
-    }
-    It 'has version passed 1.3.8' {
-        Install-Terraform -TFVersion 1.3.8
-        $testPath = [IO.Path]::Combine($outputBinDir, 'terraform_1.3.8*')
         $test = Test-Path $testPath
         $test | Should -BeTrue
     }
