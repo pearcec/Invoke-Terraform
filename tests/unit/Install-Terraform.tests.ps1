@@ -27,4 +27,10 @@ Describe 'Install-Terraform' {
         $test = Test-Path $testPath
         $test | Should -BeTrue
     }
+    It 'has version passed 1.3.8' {
+        Install-Terraform -TFVersion 1.3.8
+        $testPath = [IO.Path]::Combine($outputBinDir, 'terraform_1.3.8*')
+        $test = Test-Path $testPath
+        $test | Should -BeTrue
+    }
 }
