@@ -14,9 +14,7 @@ Function Test-TerraformCodeSignature {
         $tfThumbprint = (Get-AuthenticodeSignature -FilePath (Get-TerraformPath -TFVersion $TFVersion)).SignerCertificate.Thumbprint
         $configTFThumbprint = (Get-TerraformConfiguration).HashiCorpWindowsThumbprint
 
-        Write-Debug -Message "DB Terraform thumbprint: $tfThumbprint"
         Write-Host -ForegroundColor Yellow -Object "Terraform thumbprint: $tfThumbprint"
-        Write-Debug -Message "DB Terraform configTFThumbprint: $configTFThumbprint"
         Write-Host -ForegroundColor Yellow -Object "Terraform configTFThumbprint: $configTFThumbprint"
 
 
