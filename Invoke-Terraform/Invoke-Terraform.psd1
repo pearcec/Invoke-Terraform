@@ -12,7 +12,7 @@
     RootModule        = 'Invoke-Terraform.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.6.1'
+    ModuleVersion     = '0.6.2'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
