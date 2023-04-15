@@ -2,7 +2,8 @@ Properties {
     $PSBPreference.Build.CompileModule = $true
     $PSBPreference.Test.ImportModule = $true
     # Broken?
-    # $PSBPreference.Test.CodeCoverage.Enabled = $true
+    $PSBPreference.Test.CodeCoverage.Enabled = $true
+    $PSBPreference.Test.ScriptAnalysisEnabled = $true
     $PSBPreference.Test.OutputFile = "$($PSBPreference.Build.OutDir)/testResults.xml"
 }
 

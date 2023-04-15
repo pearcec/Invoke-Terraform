@@ -1,5 +1,15 @@
 # Only test configuration not covered by other tests
 Describe 'Set-TerraformVersion' {
+    BeforeAll {
+        $outputDir = [IO.Path]::Combine($ENV:BHProjectPath, 'Output')
+        $outputModDir = [IO.Path]::Combine($outputDir, $env:BHProjectName)
+        $outputBinDir = [IO.Path]::Combine($outputModDir, 'bin')
+
+        if (Test-Path $outputBinDir) {
+            Remove-Item -Recurse $outputBinDir
+        } 
+        New-Item $outputBinDir -ItemType directory
+    }
     It 'has Terraform version configuration set to 0.14.6' {
         Set-TerraformConfiguration -Configuration @{'TFVersion' = '0.14.6' } -Confirm:$false
         $setting = Get-TerraformConfiguration
@@ -11,9 +21,9 @@ Describe 'Set-TerraformVersion' {
         $setting.Fake | Should -Be $null
     }
     It 'has string set for thumbprint' {
-        Set-TerraformConfiguration -Configuration @{'HashiCorpWindowsThumbprint' = '35AB9FC834D217E9E7B1778FB1B97AF7C73792F2' } -Confirm:$false
+        Set-TerraformConfiguration -Configuration @{'HashiCorpWindowsThumbprint' = '35AB9FC834D217E9E7B1778FB1B97AF7C73792F2'} -Confirm:$false
         Install-Terraform -TFVersion 0.14.3
-        $testPath = [IO.Path]::Combine($outputBinDir, "terraform_0.14.3*")
+        $testPath = [IO.Path]::Combine($outputBinDir, 'terraform_0.14.3*')
         $test = Test-Path $testPath
         $test | Should -BeTrue
     }
