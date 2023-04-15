@@ -9,10 +9,10 @@ Describe 'Set-TerraformStableBinary' {
         } 
         New-Item $outputBinDir -ItemType directory
 
-        # Reinitialize the configuration
+        # Reset configuration
         $configuration = [IO.Path]::Combine($ENV:BHPSModulePath, 'Configuration.psd1')
         $defaultConfiguration = Import-Configuration -DefaultPath $configuration -CompanyName 'Invoke-Terraform' -Name 'Invoke-Terraform'
-
+        Set-TerraformConfiguration -Configuration $defaultConfiguration -Confirm:$false
     }
     It 'has version passed 0.14.2' {
         Set-TerraformStableBinary -TFVersion 0.14.2 -Confirm:$false
