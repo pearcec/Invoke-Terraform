@@ -11,7 +11,7 @@ Describe 'Set-TerraformVersion' {
         $setting.Fake | Should -Be $null
     }
     It 'has string set for thumbprint' {
-        Set-TerrafomConfiguration -Configuration @{'HashiCorpWindowsThumbprint' = '35AB9FC834D217E9E7B1778FB1B97AF7C73792F2' } -Confirm:$false
+        Set-TerraformConfiguration -Configuration @{'HashiCorpWindowsThumbprint' = '35AB9FC834D217E9E7B1778FB1B97AF7C73792F2' } -Confirm:$false
         Install-Terraform -TFVersion 0.14.3
         $testPathBin = Get-TerraformStableBinary
         $test = & $testPathBin -version | Select-String -Pattern ('Terraform v{0}' -f '0.14.3') -Quiet
