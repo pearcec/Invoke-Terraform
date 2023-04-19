@@ -10,9 +10,20 @@ Function Test-TerraformCodeSignature {
     }
     if ($IsWindows) {
         # HashiCorp started signing with version 0.12.24
-        # TODO return true and throw a Warning
+        # HashiCorp updated the signature in 1.3.8
         $tfThumbprint = (Get-AuthenticodeSignature -FilePath (Get-TerraformPath -TFVersion $TFVersion)).SignerCertificate.Thumbprint
-        return $tfthumbprint -eq (Get-TerraformConfiguration).HashiCorpWindowsThumbprint
+        $configTFThumbprint = (Get-TerraformConfiguration).HashiCorpWindowsThumbprint
+
+        if ($configTFThumbprint -is [String]) {
+            # The configuration is a string
+            return ($configTFThumbprint -eq $tfThumbprint)
+        } elseif ($configTFThumbprint -is [Object[]]) {
+            # The configuration is a list
+            return ($configTFThumbprint -contains $tfThumbprint)
+        } else {
+            # The configuration is neither a string nor a list
+            throw 'Invalid configuration for HashiCorpWindowsThumbprint, needs list or string'
+        }
     }
     if ($IsMacOs) {
         if ($PSCmdlet.MyInvocation.BoundParameters['Verbose'].IsPresent) {

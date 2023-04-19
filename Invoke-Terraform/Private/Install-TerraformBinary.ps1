@@ -21,6 +21,6 @@ Function Install-TerraformBinary {
 
     if ( -not (Test-TerraformCodeSignature -TFVersion $TFVersion -SkipCodeSignature:$SkipCodeSignature)) {
         Uninstall-Terraform -TFVersion $TFVersion
-        throw "Terraform $($TFversion) fail to pass Code Signature test. Uninstalling."
+        throw "Terraform $($TFversion) failed to pass Code Signature test. Uninstalling."
     }
 }
